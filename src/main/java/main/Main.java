@@ -21,9 +21,11 @@ import servlets.SignUpServlet;
 public class Main {
     public static void main(String[] args) throws Exception {
 
+        DBService dbService = new DBService();
+
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new SignInServlet()), "/signin");
-        context.addServlet(new ServletHolder(new SignUpServlet()), "/signup");
+        context.addServlet(new ServletHolder(new SignInServlet(dbService)), "/signin");
+        context.addServlet(new ServletHolder(new SignUpServlet(dbService)), "/signup");
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setResourceBase("public_html");

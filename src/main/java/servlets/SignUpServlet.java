@@ -21,7 +21,11 @@ public class SignUpServlet extends HttpServlet {
 //        this.accountService = accountService;
 //    }
 
-    DBService dbService = new DBService();
+    private DBService dbService;
+
+    public SignUpServlet(DBService dbService){
+        this.dbService = dbService;
+    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");

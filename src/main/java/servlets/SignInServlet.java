@@ -12,7 +12,11 @@ import dbService.dataSets.UsersDataSet;
 public class SignInServlet extends HttpServlet
 {
 
-    DBService dbService = new DBService();
+    private DBService dbService;
+
+    public SignInServlet(DBService dbService){
+        this.dbService = dbService;
+    }
 
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
