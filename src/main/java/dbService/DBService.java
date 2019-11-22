@@ -104,8 +104,10 @@ public class DBService {
         try {
             Session session = sessionFactory.openSession();
             UsersDAO dao = new UsersDAO(session);
-            long id = dao.getUserId(login);
+            long id;
+            id = dao.getUserId(login);
             session.close();
+            System.out.println(login + " == " + id);
             return id;
         } catch (HibernateException e) {
             throw new DBException(e);

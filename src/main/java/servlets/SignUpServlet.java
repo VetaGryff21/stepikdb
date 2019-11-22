@@ -14,12 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SignUpServlet extends HttpServlet {
-//    private final AccountService accountService;
-//
-//    public SignUpServlet(AccountService accountService)
-//    {
-//        this.accountService = accountService;
-//    }
 
     private DBService dbService;
 
@@ -41,14 +35,15 @@ public class SignUpServlet extends HttpServlet {
         //если нет - создаем юзера
         //если есть - пишем, что есть
 
-        long id = 0;
+        long id = -1;
         try {
             id = dbService.searchByLogin(login);
+
         } catch (DBException e) {
             e.printStackTrace();
         }
 
-        if (id == 0) {
+        if (id == -1) {
             try {
                 dbService.addUser(login, password);
             } catch (DBException e) {

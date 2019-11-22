@@ -33,4 +33,10 @@ public class UsersDAO {
     public long insertUser(String name, String password) throws HibernateException {
         return (Long) session.save(new UsersDataSet(name, password));
     }
+
+    public UsersDataSet getUserByLogin(String login) throws HibernateException {
+        Criteria criteria = session.createCriteria(UsersDataSet.class);
+        return (UsersDataSet) criteria.add(Restrictions.eq("login", login)).uniqueResult();
+    }
+
 }
